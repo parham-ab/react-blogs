@@ -1,0 +1,9 @@
+.authors-list {
+  background-color: rgb(223 223 223 / 38%);
+  border-radius: 10px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.authors-item:hover {
+  background-color: #0ab9d861 !important;
+  z-index: 9999;
+}
