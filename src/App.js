@@ -1,11 +1,17 @@
 import React from "react";
+// react-router-dom
+import { Routes, Route, Navigate } from "react-router-dom";
 // components
 import LayOut from "./components/layout";
+import HomePage from "./components/home/HomePage";
 
 const App = () => {
   return (
     <LayOut>
-      <h1>Test</h1>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/*" element={<Navigate to="/" />} />
+      </Routes>
     </LayOut>
   );
 };
