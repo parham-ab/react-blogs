@@ -2,10 +2,11 @@ import React from "react";
 // react router dom
 import { Link } from "react-router-dom";
 // mui components
-import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-
+// components
+import Container from "@mui/material/Container";
+import Blogs from "../blogs/Blogs";
 
 const HomePage = () => {
   return (
@@ -33,6 +34,7 @@ const HomePage = () => {
           >
             Blogs
           </Typography>
+          <Blogs />
         </Grid>
       </Grid>
     </Container>
