@@ -1,4 +1,6 @@
 import React from "react";
+// sanitize html
+import sanitizeHtml from "sanitize-html";
 // react router dom
 import { useParams } from "react-router-dom";
 // query to fetch author info
@@ -54,7 +56,7 @@ const AuthorPage = () => {
           </Grid>
 
           <Grid item>
-            <div dangerouslySetInnerHTML={{ __html: html }}></div>
+            <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}></div>
           </Grid>
         </Grid>
       </Container>
