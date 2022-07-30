@@ -12,23 +12,36 @@ import {
   Button,
 } from "@mui/material";
 
-const CardItems = (props) => {
-  const {
-    author: { name, avatar },
-    id,
-    slug,
-    title,
-    coverPhoto,
-  } = props;
-
+const CardItems = ({ author, id, slug, title, coverPhoto }) => {
   return (
     <Card sx={{ maxWidth: 345, borderRadius: 4 }} elevation={3}>
-      <CardHeader
-        avatar={<Avatar aria-label="avatar" src={avatar.url} alt={name} />}
-        title={name}
-        sx={{ padding: "10px" }}
-      />
-      <CardMedia component="img" height="194" image={coverPhoto.url} alt={id} />
+      {author && (
+        <CardHeader
+          avatar={
+            <Avatar
+              aria-label="avatar"
+              src={author.avatar.url}
+              alt={author.name}
+            />
+          }
+          title={
+            <Typography component="p" variant="p" color="text.secondary">
+              {author.name}
+            </Typography>
+          }
+          sx={{ padding: "10px" }}
+        />
+      )}
+      {coverPhoto.url ? (
+        <CardMedia
+          component="img"
+          height="194"
+          image={coverPhoto.url}
+          alt={id}
+        />
+      ) : (
+        <CardMedia component="img" height="194" image={coverPhoto} alt={id} />
+      )}
       <CardContent>
         <Typography
           component="h3"

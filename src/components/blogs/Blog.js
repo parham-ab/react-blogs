@@ -48,7 +48,11 @@ const Blog = () => {
                     alt={item.name}
                   />
                 }
-                title={item.author.name}
+                title={
+                  <Typography component="p" variant="p" color="text.secondary">
+                    {item.author.name}
+                  </Typography>
+                }
                 sx={{ padding: "10px" }}
               />
               <CardMedia

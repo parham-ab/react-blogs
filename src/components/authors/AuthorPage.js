@@ -10,6 +10,7 @@ import { useQuery } from "@apollo/client";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Avatar, Typography } from "@mui/material";
+import CardItems from "../common/CardItems";
 
 const AuthorPage = () => {
   const { slug } = useParams();
@@ -55,8 +56,30 @@ const AuthorPage = () => {
             </Typography>
           </Grid>
 
-          <Grid item>
+          <Grid item xs={12} mt={5}>
             <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}></div>
+          </Grid>
+
+          <Grid item xs={12} mt={6}>
+            <Typography
+              component="h2"
+              variant="h5"
+              fontWeight={700}
+              color="initial"
+            >
+              Articles:
+            </Typography>
+            <Grid container>
+              {posts.map((item) => (
+                <Grid item xs={12} sm={6} md={6} key={item.id}>
+                  <CardItems
+                    title={item.title}
+                    slug={item.slug}
+                    coverPhoto={item.coverPhoto.url}
+                  />
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
         </Grid>
       </Container>
