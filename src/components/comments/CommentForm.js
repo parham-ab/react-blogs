@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+// react toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // mutation to post comments to the server
 import { useMutation } from "@apollo/client";
 import { SEND_COMMENT } from "../../graphql/mutations";
@@ -33,13 +36,35 @@ const CommentForm = ({ slug }) => {
   const sendHandle = (e) => {
     if (userComments.name && userComments.email && userComments.text) {
       sendComment();
+      toast.success(
+        "Comment posted successfully & will display after reviewing",
+        {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        }
+      );
+      // clear inputs after submitting
+      userComments.name = "";
+      userComments.email = "";
+      userComments.text = "";
     } else {
-      alert("error");
+      toast.error("Please fill all the inputs!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
-    // clear inputs after submitting
-    userComments.name = "";
-    userComments.email = "";
-    userComments.text = "";
     console.log(data);
   };
 
@@ -99,6 +124,7 @@ const CommentForm = ({ slug }) => {
           Send
         </Button>
       </Grid>
+      <ToastContainer />
     </Grid>
   );
 };
