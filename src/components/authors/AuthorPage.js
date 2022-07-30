@@ -33,65 +33,63 @@ const AuthorPage = () => {
   } = data;
 
   return (
-    <div>
-      <Container maxWidth="lg">
-        <Grid container mt={10}>
-          <Grid
-            item
-            xs={12}
-            display={"flex"}
-            flexDirection="column"
-            alignItems="center"
+    <Container maxWidth="lg">
+      <Grid container mt={10}>
+        <Grid
+          item
+          xs={12}
+          display={"flex"}
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Avatar src={url} alt={url} sx={{ width: 250, height: 250 }} />
+          <Typography
+            component={"h3"}
+            variant="h5"
+            color="initial"
+            fontWeight={700}
+            mt={4}
           >
-            <Avatar src={url} alt={url} sx={{ width: 250, height: 250 }} />
-            <Typography
-              component={"h3"}
-              variant="h5"
-              color="initial"
-              fontWeight={700}
-              mt={4}
-            >
-              {name}
-            </Typography>
-            <Typography component="p" variant="h6" color="text.secondary">
-              {field}
-            </Typography>
-          </Grid>
+            {name}
+          </Typography>
+          <Typography component="p" variant="h6" color="text.secondary">
+            {field}
+          </Typography>
+        </Grid>
 
-          <Grid item xs={12} mt={5}>
-            <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}></div>
-          </Grid>
+        <Grid item xs={12} mt={5}>
+          <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}></div>
+        </Grid>
 
-          <Grid item xs={12} mt={6}>
-            <Typography
-              component="h2"
-              variant="h5"
-              fontWeight={700}
-              color="initial"
-            >
-              {name} Articles:
-            </Typography>
-            <Grid
-              container
-              spacing={3}
-              mt={4}
-              display="flex"
-              justifyContent="center"
-            >
-              {posts.map((item) => (
-                <Grid item xs={12} sm={6} md={6} key={item.id}>
-                  <CardItems
-                    title={item.title}
-                    slug={item.slug}
-                    coverPhoto={item.coverPhoto.url}
-                  />
-                </Grid>
-              ))}
-            </Grid>
+        <Grid item xs={12} mt={6}>
+          <Typography
+            component="h2"
+            variant="h5"
+            fontWeight={700}
+            color="initial"
+          >
+            {name} Articles:
+          </Typography>
+          <Grid
+            container
+            spacing={3}
+            mt={4}
+            display="flex"
+            justifyContent="center"
+          >
+            {posts.map((item) => (
+              <Grid item xs={12} sm={6} md={6} key={item.id}>
+                <CardItems
+                  title={item.title}
+                  slug={item.slug}
+                  coverPhoto={item.coverPhoto.url}
+                />
+              </Grid>
+            ))}
           </Grid>
         </Grid>
-      </Container>
-    </div>
+      </Grid>
+    </Container>
   );
 };
 
