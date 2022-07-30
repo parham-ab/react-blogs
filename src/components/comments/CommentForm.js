@@ -73,7 +73,6 @@ const CommentForm = ({ slug }) => {
         theme: "dark",
       });
     }
-    console.log(data);
   };
 
   return (

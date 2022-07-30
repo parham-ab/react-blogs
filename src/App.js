@@ -8,10 +8,12 @@ import BlogsPage from "./components/blogs/BlogsPage";
 import AuthorPage from "./components/authors/AuthorPage";
 import Blog from "./components/blogs/Blog";
 import Author from "./components/authors/Author";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 const App = () => {
   return (
     <LayOut>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/blogs" element={<Blog />} />

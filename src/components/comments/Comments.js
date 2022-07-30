@@ -38,7 +38,6 @@ const Comments = ({ slug }) => {
         mt: 5,
       }}
     >
-      {console.log(data.comments)}
       <Grid item xs={12} p={2} m={2}>
         <Typography component="p" variant="h6" fontWeight={700} color="primary">
           Comment list:
@@ -60,7 +59,7 @@ const Comments = ({ slug }) => {
                 variant="p"
                 color="initial"
                 fontWeight={700}
-                ml={2}
+                ml={1}
               >
                 {item.name}
               </Typography>
