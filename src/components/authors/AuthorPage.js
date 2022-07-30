@@ -67,9 +67,15 @@ const AuthorPage = () => {
               fontWeight={700}
               color="initial"
             >
-              Articles:
+              {name} Articles:
             </Typography>
-            <Grid container>
+            <Grid
+              container
+              spacing={3}
+              mt={4}
+              display="flex"
+              justifyContent="center"
+            >
               {posts.map((item) => (
                 <Grid item xs={12} sm={6} md={6} key={item.id}>
                   <CardItems
