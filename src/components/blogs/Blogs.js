@@ -5,11 +5,13 @@ import { useQuery } from "@apollo/client/react";
 import { GET_BLOGS_INFO } from "../../graphql/queries";
 // components
 import CardItems from "../common/CardItems";
+// preloader component
+import PreLoader from "../common/PreLoader";
 
 const Blogs = () => {
   const { loading, error, data } = useQuery(GET_BLOGS_INFO);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <PreLoader />;
   if (error) return <p>Error :</p>;
 
   return (

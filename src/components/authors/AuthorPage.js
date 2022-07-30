@@ -11,13 +11,15 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Avatar, Typography } from "@mui/material";
 import CardItems from "../common/CardItems";
+// preloader component
+import PreLoader from "../common/PreLoader";
 
 const AuthorPage = () => {
   const { slug } = useParams();
   const { loading, error, data } = useQuery(GET_AUTHOR, {
     variables: { slug },
   });
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <PreLoader />;
   if (error) return <p>Error :</p>;
   // destructuring data
   const {

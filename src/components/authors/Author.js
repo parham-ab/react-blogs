@@ -5,11 +5,13 @@ import { Avatar, Grid, Typography } from "@mui/material";
 // query to fetch blogs
 import { useQuery } from "@apollo/client/react";
 import { GET_AUTHORS_INFO } from "../../graphql/queries";
+// preloader component
+import PreLoader from "../common/PreLoader";
 
 const Author = () => {
   const { loading, error, data } = useQuery(GET_AUTHORS_INFO);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <PreLoader />;
   if (error) return <p>Error :</p>;
 
   return (

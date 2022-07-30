@@ -5,11 +5,13 @@ import { useQuery } from "@apollo/client";
 import { GET_AUTHORS_INFO } from "../../graphql/queries";
 // components
 import AuthorItems from "../common/AuthorItems";
+// preloader component
+import PreLoader from "../common/PreLoader";
 
 const Authors = () => {
   const { loading, error, data } = useQuery(GET_AUTHORS_INFO);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <PreLoader />;
   if (error) return <p>Error :</p>;
 
   return (
