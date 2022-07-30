@@ -54,7 +54,7 @@ const AuthorPage = () => {
           </Grid>
 
           <Grid item>
-            {html}
+            <div dangerouslySetInnerHTML={{ __html: html }}></div>
           </Grid>
         </Grid>
       </Container>
