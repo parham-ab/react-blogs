@@ -10,7 +10,7 @@ import { useQuery } from "@apollo/client";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Avatar, Box, Typography } from "@mui/material";
-import CardItems from "../common/CardItems";
+import CommentForm from "../comments/CommentForm";
 // icons
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 // preloader component
@@ -35,8 +35,6 @@ const BlogsPage = () => {
     coverPhoto,
     content: { html },
   } = data.post;
-
-  console.log(html);
 
   return (
     <Container maxWidth="lg">
@@ -94,6 +92,8 @@ const BlogsPage = () => {
         <Grid item xs={12} mt={5}>
           <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}></div>
         </Grid>
+        {/* comments */}
+        <CommentForm slug={slug} />
       </Grid>
     </Container>
   );
