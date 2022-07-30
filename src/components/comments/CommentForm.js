@@ -5,12 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 // mutation to post comments to the server
 import { useMutation } from "@apollo/client";
 import { SEND_COMMENT } from "../../graphql/mutations";
-// components
-import PreLoader from "../common/PreLoader";
 // mui components
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Button, TextField } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 const CommentForm = ({ slug }) => {
   const [userComments, setUserComments] = useState({
@@ -28,10 +27,19 @@ const CommentForm = ({ slug }) => {
   const changeHandle = (e) => {
     setUserComments({ ...userComments, [e.target.name]: e.target.value });
   };
-  // preloader
-  //   if (loading) return <PreLoader />;
-  // ! navigate to not found page
-  if (error) return <h1>Error...</h1>;
+  // ! navigate to not found page --(contain bugs)
+  if (error) {
+    toast.error("Something went wrong!", {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
   // sendHandle
   const sendHandle = (e) => {
     if (userComments.name && userComments.email && userComments.text) {
@@ -117,6 +125,7 @@ const CommentForm = ({ slug }) => {
         />
         <Button
           onClick={sendHandle}
+          endIcon={<SendIcon />}
           sx={{ marginTop: 2 }}
           variant="contained"
           disabled={loading && true}

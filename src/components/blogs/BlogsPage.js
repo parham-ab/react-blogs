@@ -15,6 +15,7 @@ import CommentForm from "../comments/CommentForm";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 // preloader component
 import PreLoader from "../common/PreLoader";
+import Comments from "../comments/Comments";
 
 const BlogsPage = () => {
   const { slug } = useParams();
@@ -93,7 +94,13 @@ const BlogsPage = () => {
           <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}></div>
         </Grid>
         {/* comments */}
-        <CommentForm slug={slug} />
+        <Grid item xs={12} mt={5}>
+          <CommentForm slug={slug} />
+        </Grid>
+        {/* comments */}
+        <Grid item xs={12} mt={5}>
+          <Comments slug={slug} />
+        </Grid>
       </Grid>
     </Container>
   );
