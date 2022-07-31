@@ -1,11 +1,13 @@
 import React from "react";
+// react router dom
 import { Link } from "react-router-dom";
-import { Avatar, Typography } from "@mui/material";
+// mui components
+import { Avatar, Box, Typography } from "@mui/material";
 
-const AuthorItems = ({ id, name, slug, avatar }) => {
+const AuthorItems = ({ name, slug, avatar }) => {
   return (
     <Link to={`/authors/${slug}`}>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <Box component="div" display={"flex"} alignItems="center">
         <Avatar alt={name} src={avatar.url} />
         <Typography
           component="p"
@@ -15,7 +17,7 @@ const AuthorItems = ({ id, name, slug, avatar }) => {
         >
           {name}
         </Typography>
-      </div>
+      </Box>
     </Link>
   );
 };

@@ -1,6 +1,9 @@
 import React from "react";
 // sanitize html
 import sanitizeHtml from "sanitize-html";
+// react toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // react router dom
 import { useParams, useNavigate } from "react-router-dom";
 // query to fetch author info
@@ -24,7 +27,18 @@ const BlogsPage = () => {
     variables: { slug },
   });
   if (loading) return <PreLoader />;
-  if (error) return <p>Error :</p>;
+  if (error) {
+    return toast.error("Something went wrong!", {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
   // destructuring data
   const {
     author: {
@@ -102,6 +116,7 @@ const BlogsPage = () => {
           <Comments slug={slug} />
         </Grid>
       </Grid>
+      <ToastContainer />
     </Container>
   );
 };

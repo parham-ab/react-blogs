@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Avatar, Grid, Typography } from "@mui/material";
-
+import { Avatar, Box, Grid, Typography } from "@mui/material";
+// react toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // query to fetch blogs
 import { useQuery } from "@apollo/client/react";
 import { GET_AUTHORS_INFO } from "../../graphql/queries";
@@ -12,13 +14,24 @@ const Author = () => {
   const { loading, error, data } = useQuery(GET_AUTHORS_INFO);
 
   if (loading) return <PreLoader />;
-  if (error) return <p>Error :</p>;
+  if (error) {
+    toast.error("Something went wrong!", {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
 
   return (
     <Grid container spacing={2} mt={9}>
       {data.authors.map((item) => (
         <Grid item xs={12} sm={6} md={4} key={item.id} m={3}>
-          <div>
+          <Box component="div">
             <Link
               to={`/authors/${item.slug}`}
               style={{
@@ -32,9 +45,10 @@ const Author = () => {
                 {item.name}
               </Typography>
             </Link>
-          </div>
+          </Box>
         </Grid>
       ))}
+      <ToastContainer />
     </Grid>
   );
 };

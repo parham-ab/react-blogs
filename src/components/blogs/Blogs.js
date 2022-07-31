@@ -15,19 +15,17 @@ const Blogs = () => {
   if (error) return <p>Error :</p>;
 
   return (
-    <div>
-      <Grid
-        container
-        spacing={2}
-        sx={{ display: "flex", justifyContent: "center" }}
-      >
-        {data.posts.map((item) => (
-          <Grid item xs={12} sm={6} md={4} key={item.id}>
-            <CardItems {...item} />
-          </Grid>
-        ))}
-      </Grid>
-    </div>
+    <Grid
+      container
+      spacing={2}
+      sx={{ display: "flex", justifyContent: "center" }}
+    >
+      {data.posts.map((item) => (
+        <Grid item xs={12} sm={6} md={4} key={item.id}>
+          <CardItems {...item} />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

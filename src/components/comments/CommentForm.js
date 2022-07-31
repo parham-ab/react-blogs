@@ -20,14 +20,13 @@ const CommentForm = ({ slug }) => {
   // destructuring inputs state
   const { name, email, text } = userComments;
   //   post comment to the server
-  const [sendComment, { data, loading, error }] = useMutation(SEND_COMMENT, {
+  const [sendComment, { loading, error }] = useMutation(SEND_COMMENT, {
     variables: { name, email, text, slug },
   });
   // comments input change handler
   const changeHandle = (e) => {
     setUserComments({ ...userComments, [e.target.name]: e.target.value });
   };
-  // ! navigate to not found page --(contain bugs)
   if (error) {
     toast.error("Something went wrong!", {
       position: "top-center",
