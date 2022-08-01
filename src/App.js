@@ -8,12 +8,15 @@ import BlogsPage from "./components/blogs/BlogsPage";
 import AuthorPage from "./components/authors/AuthorPage";
 import Blog from "./components/blogs/Blog";
 import Author from "./components/authors/Author";
-import ScrollToTop from "./components/common/ScrollToTop";
+import CustomScrollToTop from "./components/common/CustomScrollToTop";
+// scroll to top button
+import ScrollToTop from "react-scroll-to-top";
 
 const App = () => {
   return (
     <LayOut>
-      <ScrollToTop />
+      <CustomScrollToTop />
+      <ScrollToTop smooth top={200} color="#111" />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/blogs" element={<Blog />} />
