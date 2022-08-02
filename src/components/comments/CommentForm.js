@@ -24,7 +24,10 @@ const initialValues = {
 };
 // validate function
 const validationSchema = Yup.object({
-  name: Yup.string().trim().required("Name Required!"),
+  name: Yup.string()
+    .trim()
+    .required("Name Required!")
+    .max(50, "your name can't be more than 50 chars!"),
   email: Yup.string()
     .matches(
       /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,3}$/i,
@@ -34,6 +37,7 @@ const validationSchema = Yup.object({
   text: Yup.string()
     .trim()
     .min(5, "your comment must be at least 5 or more chars!")
+    .max(500, "your comment can't be more than 500 chars!")
     .required("Text Required!"),
 });
 // submit
