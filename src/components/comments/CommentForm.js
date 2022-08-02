@@ -10,67 +10,53 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Button, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+// formik
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
-const CommentForm = ({ slug }) => {
-  const [userComments, setUserComments] = useState({
-    name: "",
-    email: "",
-    text: "",
-  });
-  // destructuring inputs state
-  const { name, email, text } = userComments;
+// initial values
+const initialValues = {
+  name: "",
+  email: "",
+  text: "",
+};
+// validate function
+const validationSchema = Yup.object({
+  name: Yup.string().trim().required("Required"),
+  email: Yup.string()
+    .matches(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,3}$/i,
+      "invalid Email address"
+    )
+    .required("Required"),
+  text: Yup.string().trim().required("Required"),
+});
+// submit
+const onSubmit = (values) => {
+  console.log(values);
+};
+
+const Test = ({ slug }) => {
+  let finalValue = {};
+  const formik = useFormik({ initialValues, validationSchema, onSubmit });
+  const { values } = formik;
+  values.slug = slug;
+  // destructuring values
+  finalValue = values;
+  const { name, email, text } = finalValue;
   //   post comment to the server
   const [sendComment, { loading, error }] = useMutation(SEND_COMMENT, {
     variables: { name, email, text, slug },
   });
-  // comments input change handler
-  const changeHandle = (e) => {
-    setUserComments({ ...userComments, [e.target.name]: e.target.value });
-  };
-  if (error) {
-    toast.error("Something went wrong!", {
-      position: "top-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  }
-  // sendHandle
-  const sendHandle = (e) => {
-    if (userComments.name && userComments.email && userComments.text) {
+  // validation inputs before sending comment
+  const senderHanlde = () => {
+    if (
+      !Object.keys(formik.errors).length &&
+      formik.values.name &&
+      formik.values.email &&
+      formik.values.text
+    ) {
       sendComment();
-      toast.success(
-        "Comment posted successfully & will display after reviewing",
-        {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        }
-      );
-      // clear inputs after submitting
-      userComments.name = "";
-      userComments.email = "";
-      userComments.text = "";
-    } else {
-      toast.error("Please fill all the inputs!", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
     }
   };
 
@@ -88,52 +74,64 @@ const CommentForm = ({ slug }) => {
         <Typography component="p" variant="h6" color="primary" fontWeight={700}>
           Comments:
         </Typography>
+        <form onSubmit={formik.handleSubmit}>
+          <TextField
+            // required
+            size="small"
+            name="name"
+            label="Name"
+            fullWidth
+            sx={{ marginTop: 2 }}
+            error={formik.errors.name && true}
+            helperText={
+              formik.errors.name && formik.touched.name && formik.errors.name
+            }
+            {...formik.getFieldProps("name")}
+          />
 
-        <TextField
-          sx={{ marginTop: 2 }}
-          fullWidth
-          label="name"
-          id="name"
-          variant="outlined"
-          value={userComments.name}
-          onChange={changeHandle}
-          name="name"
-        />
-        <TextField
-          sx={{ marginTop: 2 }}
-          fullWidth
-          label="email"
-          id="email"
-          variant="outlined"
-          value={userComments.email}
-          onChange={changeHandle}
-          name="email"
-        />
-        <TextField
-          sx={{ marginTop: 2 }}
-          label="text"
-          id="text"
-          variant="outlined"
-          fullWidth
-          multiline
-          rows={4}
-          value={userComments.text}
-          onChange={changeHandle}
-          name="text"
-        />
-        <Button
-          onClick={sendHandle}
-          endIcon={<SendIcon />}
-          sx={{ marginTop: 2 }}
-          variant="contained"
-          disabled={loading && true}
-        >
-          Send
-        </Button>
+          <TextField
+            // required
+            size="small"
+            name="email"
+            label="Email"
+            fullWidth
+            sx={{ marginTop: 2 }}
+            error={formik.errors.email && true}
+            helperText={
+              formik.errors.email && formik.touched.email && formik.errors.email
+            }
+            {...formik.getFieldProps("email")}
+          />
+
+          <TextField
+            // required
+            size="small"
+            name="text"
+            label="Text"
+            fullWidth
+            sx={{ marginTop: 2 }}
+            error={formik.errors.text && true}
+            helperText={
+              formik.errors.text && formik.touched.text && formik.errors.text
+            }
+            {...formik.getFieldProps("text")}
+          />
+
+          <Button
+            type="submit"
+            endIcon={<SendIcon />}
+            sx={{ marginTop: 2 }}
+            variant="contained"
+            onClick={senderHanlde}
+            disabled={loading && true}
+          >
+            Send
+          </Button>
+        </form>
       </Grid>
       <ToastContainer />
     </Grid>
   );
 };
 
-export default CommentForm;
+export default Test;
