@@ -66,6 +66,10 @@ const Test = ({ slug }) => {
       formik.values.text
     ) {
       sendComment();
+      // clear inputs after sending comments
+      formik.values.name = "";
+      formik.values.email = "";
+      formik.values.text = "";
     }
   };
 
