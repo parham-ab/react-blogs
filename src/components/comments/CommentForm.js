@@ -70,6 +70,35 @@ const Test = ({ slug }) => {
       formik.values.name = "";
       formik.values.email = "";
       formik.values.text = "";
+      // set touch to false
+      formik.touched.name = false;
+      formik.touched.email = false;
+      formik.touched.text = false;
+      // success alert
+      toast.success(
+        "your comment sent successfully & will be display after reviewing!",
+        {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        }
+      );
+    } else {
+      toast.error("something went wrong!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
 
