@@ -9,7 +9,9 @@ import { SEND_COMMENT } from "../../graphql/mutations";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Button, TextField } from "@mui/material";
+// icons
 import SendIcon from "@mui/icons-material/Send";
+import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 // formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -122,13 +124,13 @@ const Test = ({ slug }) => {
 
           <Button
             type="submit"
-            endIcon={<SendIcon />}
+            endIcon={!loading ? <SendIcon /> : <HourglassTopIcon />}
             sx={{ marginTop: 2 }}
             variant="contained"
             onClick={senderHanlde}
             disabled={loading && true}
           >
-            Send
+            {!loading ? "Send" : "Sending..."}
           </Button>
         </form>
       </Grid>
