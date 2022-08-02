@@ -22,14 +22,17 @@ const initialValues = {
 };
 // validate function
 const validationSchema = Yup.object({
-  name: Yup.string().trim().required("Required"),
+  name: Yup.string().trim().required("Name Required!"),
   email: Yup.string()
     .matches(
       /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,3}$/i,
       "invalid Email address"
     )
     .required("Required"),
-  text: Yup.string().trim().required("Required"),
+  text: Yup.string()
+    .trim()
+    .min(5, "your comment must be at least 5 or more chars!")
+    .required("Text Required!"),
 });
 // submit
 const onSubmit = (values) => {
