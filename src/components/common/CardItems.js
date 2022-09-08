@@ -25,7 +25,12 @@ const CardItems = ({ author, id, slug, title, coverPhoto }) => {
             />
           }
           title={
-            <Typography component="p" variant="p" color="text.secondary">
+            <Typography
+              component="p"
+              variant="p"
+              color="text.secondary"
+              sx={{ fontSize: "15px", fontWeight: 600 }}
+            >
               {author.name}
             </Typography>
           }
@@ -45,9 +50,9 @@ const CardItems = ({ author, id, slug, title, coverPhoto }) => {
       <CardContent>
         <Typography
           component="h3"
-          variant="h6"
+          variant="body1"
           color="text.secondary"
-          fontWeight={400}
+          fontWeight={600}
         >
           {title}
         </Typography>
@@ -58,7 +63,12 @@ const CardItems = ({ author, id, slug, title, coverPhoto }) => {
           <Button
             size="small"
             variant="outlined"
-            sx={{ width: "100%", borderRadius: 3 }}
+            sx={{
+              width: "100%",
+              borderRadius: 3,
+              color: "#2e4b8d",
+              fontWeight: "600",
+            }}
           >
             read
           </Button>

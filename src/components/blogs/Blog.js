@@ -51,7 +51,12 @@ const Blog = () => {
                   />
                 }
                 title={
-                  <Typography component="p" variant="p" color="text.secondary">
+                  <Typography
+                    component="p"
+                    variant="p"
+                    color="text.secondary"
+                    sx={{ fontSize: "15px", fontWeight: 600 }}
+                  >
                     {item.author.name}
                   </Typography>
                 }
@@ -66,9 +71,9 @@ const Blog = () => {
               <CardContent>
                 <Typography
                   component="h3"
-                  variant="h6"
+                  variant="body1"
                   color="text.secondary"
-                  fontWeight={400}
+                  fontWeight={600}
                 >
                   {item.title}
                 </Typography>
@@ -79,7 +84,12 @@ const Blog = () => {
                   <Button
                     size="small"
                     variant="outlined"
-                    sx={{ width: "100%", borderRadius: 3 }}
+                    sx={{
+                      width: "100%",
+                      borderRadius: 3,
+                      color: "#2e4b8d",
+                      fontWeight: "600",
+                    }}
                   >
                     read
                   </Button>

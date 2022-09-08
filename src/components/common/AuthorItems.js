@@ -13,7 +13,7 @@ const AuthorItems = ({ name, slug, avatar }) => {
           component="p"
           variant="p"
           color="text.secondary"
-          sx={{ marginLeft: 2 }}
+          sx={{ marginLeft: 2, fontSize: "15px", fontWeight: 600 }}
         >
           {name}
         </Typography>

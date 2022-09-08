@@ -9,7 +9,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 
 const Header = () => {
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: "#365781" }}>
+    <AppBar position="sticky" sx={{ backgroundColor: "#042036" }}>
       <Container maxWidth="xl">
         <Toolbar>
           <Link to={`/`}>

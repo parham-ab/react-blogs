@@ -1,4 +1,3 @@
-import React from "react";
 // sanitize html
 import sanitizeHtml from "sanitize-html";
 // react router dom
@@ -9,8 +8,10 @@ import { useQuery } from "@apollo/client";
 // mui components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Chip, Typography } from "@mui/material";
 import CardItems from "../common/CardItems";
+// icons
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
 // preloader component
 import PreLoader from "../common/PreLoader";
 
@@ -52,12 +53,11 @@ const AuthorPage = () => {
           >
             {name}
           </Typography>
-          <Typography component="p" variant="h6" color="text.secondary">
-            {field}
-          </Typography>
+          <Chip label={field} size="small" color="info" sx={{ mt: 1 }} />
         </Grid>
 
-        <Grid item xs={12} mt={5}>
+        <Grid item xs={12} mt={5} display="flex" alignItems="center">
+          <LightbulbIcon sx={{ fontSize: 21, color: "#eba506" }} />
           <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}></div>
         </Grid>
 
