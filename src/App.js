@@ -1,4 +1,5 @@
 import React from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 // react-router-dom
 import { Routes, Route, Navigate } from "react-router-dom";
 // components
@@ -12,20 +13,33 @@ import CustomScrollToTop from "./components/common/CustomScrollToTop";
 // scroll to top button
 import ScrollToTop from "react-scroll-to-top";
 
+const theme = createTheme({
+  typography: {
+    fontFamily: ["Quicksand", "Rubik"].join(","),
+    fontSize: 14,
+    fontWeightLight: 400,
+    fontWeightMedium: 500,
+    fontWeightRegular: 600,
+    fontWeightBold: 700,
+  },
+});
+
 const App = () => {
   return (
-    <LayOut>
-      <CustomScrollToTop />
-      <ScrollToTop smooth top={200} color="#111" />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/blogs" element={<Blog />} />
-        <Route path="/blogs/:slug" element={<BlogsPage />} />
-        <Route path="/authors" element={<Author />} />
-        <Route path="/authors/:slug" element={<AuthorPage />} />
-        <Route path="/*" element={<Navigate to="/" />} />
-      </Routes>
-    </LayOut>
+    <ThemeProvider theme={theme}>
+      <LayOut>
+        <CustomScrollToTop />
+        <ScrollToTop smooth top={200} color="#111" />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/blogs/:slug" element={<BlogsPage />} />
+          <Route path="/authors" element={<Author />} />
+          <Route path="/authors/:slug" element={<AuthorPage />} />
+          <Route path="/*" element={<Navigate to="/" />} />
+        </Routes>
+      </LayOut>
+    </ThemeProvider>
   );
 };
 
